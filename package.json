@@ -1,0 +1,41 @@
+{
+  "name": "touchsms",
+  "version": "0.0.1",
+  "description": "A touchSMS helper library to send SMS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/touchsms/touchsms-node.git"
+  },
+  "keywords": [
+    "sms",
+    "touchsms",
+    "australia",
+    "prepaid"
+  ],
+  "devDependencies": {
+    "chai": ">=3.5.0",
+    "chai-as-promised": ">=5.3.0"
+  },
+  "dependencies": {
+    "querystring": ">=0.2.0",
+    "q": ">-=1.4.1"
+  },
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "author": "touchSMS <support@touchsms.com.au> (https://touchsms.com.au)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/touchsms/touchsms-node/issues"
+  },
+  "homepage": "https://github.com/touchsms/touchsms-node#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "mocha": "^2.5.3"
+  }
+}
