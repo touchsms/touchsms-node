@@ -24,5 +24,6 @@ A helper library to send SMS with [touchSMS](https://touchsms.com.au)
 
 
 ## Tests
+  Update `/test/test.js` with live API credentials.
 
   `npm test`

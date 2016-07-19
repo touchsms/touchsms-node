@@ -17,8 +17,10 @@
     "prepaid"
   ],
   "devDependencies": {
-    "chai": ">=3.5.0",
-    "chai-as-promised": ">=5.3.0"
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "coveralls": "^2.11.11",
+    "mocha": "^2.5.3"
   },
   "dependencies": {
     "querystring": ">=0.2.0",
@@ -32,10 +34,5 @@
   "bugs": {
     "url": "https://github.com/touchsms/touchsms-node/issues"
   },
-  "homepage": "https://github.com/touchsms/touchsms-node#readme",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
-    "mocha": "^2.5.3"
-  }
+  "homepage": "https://github.com/touchsms/touchsms-node#readme"
 }
