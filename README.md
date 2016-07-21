@@ -1,6 +1,8 @@
 touchSMS 
 =========
 
+[![NPM](https://nodei.co/npm/touchsms.png?downloads=true&stars=true)](https://nodei.co/npm/touchsms/)
+
 [![Build Status](https://travis-ci.org/touchsms/touchsms-node.svg?branch=master)](https://travis-ci.org/touchsms/touchsms-node)
 [![Coverage Status](https://coveralls.io/repos/github/touchsms/touchsms-node/badge.svg?branch=master)](https://coveralls.io/github/touchsms/touchsms-node?branch=master)
 
