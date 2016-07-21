@@ -61,6 +61,13 @@ The offical helper library to send SMS with [touchSMS](https://touchsms.com.au)
       code: 200 
     }
 
+## Examples
+
+Examples can be found in `examples` directory.
+
+    npm examples/sendsms.js
+    npm examples/users.js
+
 ## Tests
   Tests run through a Sandbox URL with Sandbox credentials. 
 
