@@ -5,7 +5,7 @@ A helper library to send SMS with [touchSMS](https://touchsms.com.au)
 
 ## Installation
 
-  `npm install touchsms`
+    npm install touchsms
 
 ## Usage
     var touchSMS = require('touchsms');
@@ -20,10 +20,16 @@ A helper library to send SMS with [touchSMS](https://touchsms.com.au)
         senderid: 'touchSMS'
     }
 
-  Output should be `{"code":200,"errors":0,"message":""}`
+    sms.sendSms(smsOptions);
+
+Output
+
+    {"code":200,"errors":0,"message":""}
 
 
 ## Tests
-  Update `/test/test.js` with live API credentials.
+  Tests run through a Sandbox URL with Sandbox credentials. 
 
-  `npm test`
+  You can update the tests with your own credentials and remove the final `true` parameter on the touchSMS constructor.
+
+    npm test

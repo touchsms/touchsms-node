@@ -4,8 +4,13 @@ var http = require('http');
 var querystring = require('querystring');
 var q = require('q');
 
-var touchSMS = function(access_token, token_id) {
-    var url = 'platform.touchsms.com.au';
+var touchSMS = function(access_token, token_id, sandbox) {
+
+    if (sandbox === true) {
+        var url = 'sandbox.touchsms.com.au';  
+    } else {
+        var url = 'platform.touchsms.com.au';    
+    }    
 
     this.sendSms = function(options, callback) {
         var postBuild = [];
@@ -82,6 +87,7 @@ var touchSMS = function(access_token, token_id) {
         });
 
         req.on('error', (err) => {
+            console.log(err);
             deferred.reject(err);
         });
 

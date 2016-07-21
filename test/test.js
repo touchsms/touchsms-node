@@ -1,8 +1,8 @@
 'use strict';
 
 // API Keys can be generated at https://platform.touchsms.com.au/apis/
-var access_token = ""; // Add Access Token 
-var token_id = ""; // Add Token ID
+var access_token = "RGyrznuKkTYa";
+var token_id = "LvuOpLNs0FPCYfW8XEzspq3UL"; 
 
 var chai = require('chai');
 var expect = chai.expect;
@@ -11,9 +11,8 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 var touchSMS = require('../index');
-var tsms = new touchSMS(access_token, token_id);
-var tsmsBad = new touchSMS(access_token + '-', token_id + '-');
-
+var sms = new touchSMS(access_token, token_id, true);
+var smsBad = new touchSMS(access_token + '-', token_id + '-', true);
 
 it('should send SMS', function() {
     var touchSmsOptions = {
@@ -22,7 +21,7 @@ it('should send SMS', function() {
         senderid: 'touchSMS'
     };
 
-    var result = tsms.sendSms(touchSmsOptions);
+    var result = sms.sendSms(touchSmsOptions);
 
     return result.then(function(data) {
         var json = JSON.parse(data);
@@ -43,7 +42,7 @@ it('should fail to send SMS (authentication error)', function() {
         senderid: 'touchSMS'
     };
 
-    var result = tsmsBad.sendSms(touchSmsOptions);
+    var result = smsBad.sendSms(touchSmsOptions);
 
     return result.then(function(data) {
         var json = JSON.parse(data);
@@ -64,7 +63,7 @@ it('should fail to send SMS (invalid sender ID error)', function() {
         senderid: 'bad sender id hello + world'
     };
 
-    var result = tsms.sendSms(touchSmsOptions);
+    var result = sms.sendSms(touchSmsOptions);
 
     return result.then(function(data) {
         var json = JSON.parse(data);
@@ -86,7 +85,7 @@ it('should fail to send SMS (missing fields error)', function() {
         senderid: 'touchSMS'
     };
 
-    var result = tsms.sendSms(touchSmsOptions);
+    var result = sms.sendSms(touchSmsOptions);
 
     return result.then(function(data) {
         var json = JSON.parse(data);
@@ -102,7 +101,7 @@ it('should fail to send SMS (missing fields error)', function() {
 });
 
 it('should get User balance', function() {
-    var result = tsms.users();
+    var result = sms.users();
 
     return result.then(function(data) {
         var json = JSON.parse(data);
@@ -116,7 +115,7 @@ it('should get User balance', function() {
 });
 
 it('should fail to get User balance', function() {
-    var result = tsmsBad.users();
+    var result = smsBad.users();
 
     return result.then(function(data) {
         var json = JSON.parse(data);
