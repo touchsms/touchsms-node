@@ -1,6 +1,6 @@
 {
   "name": "touchsms",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A touchSMS helper library to send SMS.",
   "main": "index.js",
   "scripts": {
