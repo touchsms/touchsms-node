@@ -27,7 +27,7 @@ The offical helper library to send SMS with [touchSMS](https://touchsms.com.au)
         senderid: 'touchSMS'
     }
 
-    var result sms.sendSms(smsOptions);
+    var result = sms.sendSms(smsOptions);
 
     result.then(function(data) {
         var json = JSON.parse(data);
