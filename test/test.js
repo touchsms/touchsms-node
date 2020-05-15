@@ -2,8 +2,9 @@
 
 // API Keys can be generated at https://platform.touchsms.com.au/apis/
 var access_token = "RGyrznuKkTYa";
-var token_id = "LvuOpLNs0FPCYfW8XEzspq3UL"; 
+var token_id = "LvuOpLNs0FPCYfW8XEzspq3UL";
 
+var nock = require('nock');
 var chai = require('chai');
 var expect = chai.expect;
 
@@ -15,6 +16,14 @@ var sms = new touchSMS(access_token, token_id, true);
 var smsBad = new touchSMS(access_token + '-', token_id + '-', true);
 
 it('should send SMS', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .post('/rest/v1/messages')
+      .reply(200, {
+        code: 200,
+        errors: 0,
+        message: '',
+      });
+
     var touchSmsOptions = {
         number: 61491570156,
         message: 'hello world',
@@ -36,6 +45,16 @@ it('should send SMS', function() {
 });
 
 it('should fail to send SMS (authentication error)', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .post('/rest/v1/messages')
+      .reply(403, {
+        code: 403,
+        errors: {
+          auth: 'Authentication failed.',
+        },
+        message: '',
+      });
+
     var touchSmsOptions = {
         number: 61491570156,
         message: 'hello world',
@@ -57,6 +76,22 @@ it('should fail to send SMS (authentication error)', function() {
 });
 
 it('should fail to send SMS (invalid sender ID error)', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .post('/rest/v1/messages')
+      .reply(400, {
+        code: 400,
+        errors: {
+          children: {
+            senderid: {
+              errors: [
+                'Invalid Sender ID. Must be less than 11 Alphanumeric characters or 16 numeric characters. No spaces or symbols allowed.'
+              ]
+            }
+          }
+        },
+        message: 'Validation Failed',
+      });
+
     var touchSmsOptions = {
         number: 61491570156,
         message: 'hello world',
@@ -80,6 +115,22 @@ it('should fail to send SMS (invalid sender ID error)', function() {
 
 
 it('should fail to send SMS (missing fields error)', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .post('/rest/v1/messages')
+      .reply(400, {
+        code: 400,
+        errors: {
+          children: {
+            number: {
+              errors: [
+                'Number field not supplied'
+              ]
+            }
+          }
+        },
+        message: 'Validation Failed',
+      });
+
     var touchSmsOptions = {
         message: 'hello world',
         senderid: 'touchSMS'
@@ -101,6 +152,14 @@ it('should fail to send SMS (missing fields error)', function() {
 });
 
 it('should get User balance', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .get('/rest/v1/users')
+      .reply(200, {
+        code: 200,
+        credits: 100,
+        username: 'user@mock',
+      });
+
     var result = sms.users();
 
     return result.then(function(data) {
@@ -115,6 +174,15 @@ it('should get User balance', function() {
 });
 
 it('should fail to get User balance', function() {
+    nock('http://sandbox.touchsms.com.au')
+      .get('/rest/v1/users')
+      .reply(403, {
+        code: 403,
+        errors: {
+          auth: 'Authentication failed.'
+        }
+      });
+
     var result = smsBad.users();
 
     return result.then(function(data) {
