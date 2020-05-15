@@ -27,6 +27,14 @@ var touchSMS = function(access_token, token_id, sandbox) {
             postBuild['senderid'] = options.senderid;
         }
 
+        if (options.reference != undefined) {
+            postBuild['reference'] = options.reference;
+        }
+
+        if (options.campaignName != undefined) {
+            postBuild['campaignName'] = options.campaignName;
+        }
+
         var postData = querystring.stringify(postBuild);
 
         var options = {
